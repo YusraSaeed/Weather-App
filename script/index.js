@@ -45,7 +45,7 @@ function setIcon (data) {
         // rain 
     
         else if(data.weather[0].description == 'light rain' || data.weather[0].description == 'moderate rain' || data.weather[0].description == 'heavy intensity rain' || data.weather[0].description == 'very heavy rain' || data.weather[0].description == 'extreme rain') {
-            document.getElementById('icon').setAttribute('src', '../images/Rain/rain.png');
+            document.getElementById('icon').setAttribute('src', '/images/Rain/rain.png');
         }
     
         else if (data.weather[0].description == 'light intensity shower rain' || data.weather[0].description == 'shower rain' || data.weather[0].description == 'heavy intensity shower rain' || data.weather[0].description == 'ragged shower rain') {
