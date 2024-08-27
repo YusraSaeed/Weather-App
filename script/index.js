@@ -1,5 +1,7 @@
 const apiKey = '5aef51ccfa5c5219a2497c9b9ff81f71';
 const loadingSpinner = document.getElementById('loadingSpinner');
+const loadingSpinnerTwo = document.getElementById('loadingSpinnerTwo');
+
 const detailsContainer = document.querySelector('.details');
 const cityName = document.getElementById('city');
 const time = document.getElementById('time');
@@ -10,6 +12,8 @@ const wind = document.getElementById('wind');
 const windImg = document.getElementById('windImg');
 const humidity = document.getElementById('humidity');
 const humidityImg = document.getElementById('humidityImg');
+const table = document.getElementById('displayForecast');
+
 
 // Image setting
 function setIcon (data) {
@@ -71,15 +75,15 @@ function setIcon (data) {
 function getWeather(city) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;    
 
-    document.getElementById('city').innerHTML = ` `;
-        document.getElementById('time').innerHTML = ` `;
-        document.getElementById('temp').innerHTML = ` `;
-        document.getElementById('description').innerHTML = ` `;
-        document.getElementById('wind').innerHTML = ` `;
-        document.getElementById('humidity').innerHTML = ` `;
-        document.getElementById('windImg').setAttribute('src', '');
-        document.getElementById('humidityImg').setAttribute('src', '');
-        document.getElementById('icon').setAttribute('src', '');
+    cityName.innerHTML = ` `;
+    time.innerHTML = ` `;
+    currentTemp.innerHTML = ` `;
+    description.innerHTML = ` `;
+    wind.innerHTML = ` `;
+    humidity.innerHTML = ` `;
+    windImg.setAttribute('src', '');
+    humidityImg.setAttribute('src', '');
+    weatherIcon.setAttribute('src', '');
 
     loadingSpinner.style.display = 'block';
     detailsContainer.style.display = 'none';
@@ -87,24 +91,34 @@ function getWeather(city) {
     fetch(url)
     .then((response) => {
         loadingSpinner.style.display = 'none';
-        detailsContainer.style.display = 'flex';
+
         return response.json();
     })
     .then((data) => {
+        
         console.log(data);
 
-        document.getElementById('city').innerHTML = `${data.name}`;
-        document.getElementById('time').innerHTML = `${new Date().getHours()}:${new Date().getMinutes()}`;
-        document.getElementById('temp').innerHTML = `${data.main.temp}°C`;
-        document.getElementById('description').innerHTML = data.weather[0].description;
-        document.getElementById('wind').innerHTML = `${data.wind.speed} m/s`;
-        document.getElementById('humidity').innerHTML = `${data.main.humidity}%`;
-        document.getElementById('windImg').setAttribute('src', '../images/wind.png');
-        document.getElementById('humidityImg').setAttribute('src', '../images/humidity.png');
+        if(data.name) {
+            detailsContainer.style.display = 'flex';
+            document.getElementById('city').innerHTML = `${data.name}`;
+            document.getElementById('time').innerHTML = `${new Date().getHours()}:${new Date().getMinutes()}`;
+            document.getElementById('temp').innerHTML = `${data.main.temp}°C`;
+            document.getElementById('description').innerHTML = data.weather[0].description;
+            document.getElementById('wind').innerHTML = `${data.wind.speed} m/s`;
+            document.getElementById('humidity').innerHTML = `${data.main.humidity}%`;
+            document.getElementById('windImg').setAttribute('src', '../images/wind.png');
+            document.getElementById('humidityImg').setAttribute('src', '../images/humidity.png');
 
-        setIcon(data);
+            setIcon(data);
 
-        fiveDayForecast(`${data.name}`);
+            fiveDayForecast(`${data.name}`);
+        }
+        else {
+            loadingSpinner.style.display = 'none';
+            alert (`Enter a valid city`)
+            fiveDayForecast('key');
+        }
+        
 
     })
     .catch((error) => {
@@ -113,20 +127,28 @@ function getWeather(city) {
     })
 }
 
-function fiveDayForecast (city) {
-    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&exclude=current,minutely,hourly,alerts&appid=${apiKey}&units=metric`
-    loadingSpinner.style.display = 'block';
+function fiveDayForecast (city) {  
+
+    if (city === 'key') {
+        table.innerHTML = ``;
+        document.getElementById('insertCityName').innerHTML = '';
+
+        console.log(`don't display`);
+        
+    } else {
+        const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&exclude=current,minutely,hourly,alerts&appid=${apiKey}&units=metric`
+    table.innerHTML = ` `; // Clear previous entries if any
+    loadingSpinnerTwo.style.display = 'block';
 
     fetch(url)
     .then((response) => {
-        loadingSpinner.style.display = 'none';
+        loadingSpinnerTwo.style.display = 'none';
         return response.json();
     })
     .then((data) => {
-        const dailyData = data.list.filter(entry => entry.dt_txt.includes("12:00:00"));
-        const table = document.getElementById('displayForecast');
-        table.innerHTML = ''; // Clear previous entries if any
-        dailyData.forEach((element) => {
+            document.getElementById('insertCityName').innerHTML = `${city} `;
+            const dailyData = data.list.filter(entry => entry.dt_txt.includes("12:00:00"));
+            dailyData.forEach((element) => {
             const iconCode = element.weather[0].icon;
             const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
@@ -143,12 +165,15 @@ function fiveDayForecast (city) {
                 </tr>
             `;
         });
-        `</table>`
+        // `</table>`
+        
     })
     .catch((error) => {
         console.log(error);
         
     })    
+    }
+    
 }
 
 // Initial Weather Functionality
