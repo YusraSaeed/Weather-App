@@ -62,7 +62,7 @@ function setIcon (data) {
             document.getElementById('icon').setAttribute('src', '../images/Snow/snow.png');
         }
         else {
-            document.getElementById('icon').setAttribute('src', '../images/Atmosphere/mist.png');
+            document.getElementById('icon').setAttribute('src', 'images/Atmosphere/mist.png');
     
         }        
 }
