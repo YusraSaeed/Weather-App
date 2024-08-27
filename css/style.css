@@ -1,0 +1,237 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap'); */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body.light-mode {
+    background-color: white;
+    color: black;
+    
+}
+
+body.dark-mode {
+    background-color: rgb(33, 37, 41);
+    color: white;
+}
+
+/* Navigation Bar */
+
+.navbar {
+    background-color: rgba(51, 51, 51, 0.85);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+} 
+
+nav img {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* #changeMode {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+} */
+
+/* @media (max-width: 576px) {
+    #changeMode {
+        margin-left: 40%;
+        margin-top: 10px;
+    }
+} */
+
+
+input {
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+.myBtn {
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: 20px;
+    font-size: 1.2rem;
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+}
+.myBtn:hover {
+    background-color: #424242;
+
+}
+
+/*  Main Section */
+
+.main {
+    margin: 70px auto; 
+    min-width: 30vw; 
+    max-width: 400px;
+    max-height: 80vh;
+    min-height: 65%;
+    /* border: 3px solid rgba(92, 92, 36, 0.932); */
+    box-shadow: rgba(51, 51, 51, 0.2) 0px 0px 10px;
+    border-radius: 20px;
+    background-color: rgba(51, 51, 51, 0.855);
+    color: white;
+}
+
+.spinner {
+    border: 8px dashed #212121;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 50px auto;
+    margin-top: 50px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+}
+
+.temperature {
+    /* background-color: olive; */
+    font-size: 2.3rem;
+    font-weight: 700;
+    text-align: center;
+    -webkit-margin-bottom-collapse: 40px;
+    padding-top: 25px;
+    /* background-color: palegoldenrod; */
+}
+
+.description {
+    color: grey;
+    text-align: center;
+    padding-top: 5px; 
+    text-transform: capitalize;
+}
+.details {
+    display: none;
+    justify-content: space-between;
+    margin: 20px;
+}
+.stats {
+    margin: 20px 0;
+    /* display: flex;
+    justify-content: space-between; */
+    /* padding: 20px; */
+    /* background-color: pink; */
+    font-size: inherit;
+}
+
+
+
+.wind,
+.humidity {
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+}
+.wind img {
+    width: 25px;
+    height: 25px;
+    filter: grayscale(100%);
+}
+.humidity img {
+    width: 30px;
+    height: 20px;
+}
+
+.weatherIcon {
+    margin-top: 20px;
+    margin-right: 20px;
+    /* background-color: pink; */
+
+}
+.weatherIcon img {
+    width: 100px;
+    height: 100px;
+}
+
+
+/* five day forcast */
+.fiveDaysForecast {
+    min-width: 80vw;
+    max-width: 500px;
+    max-height: auto;
+    min-height: 75%;
+    margin: 70px auto;
+    box-shadow: rgba(51, 51, 51, 0.2) 0px 0px 10px;
+    border-radius: 20px;
+    background-color: rgba(51, 51, 51, 0.855);
+    color: white;
+    padding: 20px;
+}
+
+.fiveDaysForecast h2 {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+table {
+    width: 100%;
+    padding: 10px;
+    border-spacing: 0;
+    border-collapse: separate;
+    break-inside: avoid;
+}
+
+tr {
+    padding: 10px;
+    margin: 0 1px;
+    display: flex;
+    justify-content: space-between;
+}
+
+td {
+    flex: 1;
+    text-align: center;
+    padding: 10px 5px;
+}
+
+td img {
+    width: 40px;
+    height: 40px;
+}
+
+@media (max-width: 500px) {
+    tr {
+        flex-direction: column;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding-bottom: 10px; 
+        margin-bottom: 10px; 
+        column-rule-color: pink;
+    }
+
+    td {
+        text-align: center;
+    }
+
+}
+
+
