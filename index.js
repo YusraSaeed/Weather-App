@@ -19,54 +19,54 @@ const table = document.getElementById('displayForecast');
 function setIcon (data) {
         // clear
         if (data.weather[0].description == 'clear sky') {
-            document.getElementById('icon').setAttribute('src', '../images/Clear/clearsky.png');
+            document.getElementById('icon').setAttribute('src', './images/Clear/clearsky.png');
         } 
         
         // clouds
         else if (data.weather[0].description == 'few clouds') {
-            document.getElementById('icon').setAttribute('src', '../images/Clouds/fewClouds.png');
+            document.getElementById('icon').setAttribute('src', './images/Clouds/fewClouds.png');
         } 
         
         else if (data.weather[0].description == 'scattered clouds') {
-            document.getElementById('icon').setAttribute('src', '../images/Clouds/scatteredClouds.png');
+            document.getElementById('icon').setAttribute('src', './images/Clouds/scatteredClouds.png');
         } 
     
         else if (data.weather[0].description == 'broken clouds' || data.weather[0].description == 'overcast clouds') {
-            document.getElementById('icon').setAttribute('src', '../images/Clouds/brokenOvercastClouds.png')
+            document.getElementById('icon').setAttribute('src', './images/Clouds/brokenOvercastClouds.png')
         }
         
         // thunderstorm
         else if (data.weather[0].description == '	thunderstorm with light rain' || data.weather[0].description == '	thunderstorm with rain' || data.weather[0].description == '	thunderstorm with heavy rain' || data.weather[0].description == '	light thunderstorm' || data.weather[0].description == '	thunderstorm' || data.weather[0].description == '	heavy thunderstorm' || data.weather[0].description == '	ragged thunderstorm' || data.weather[0].description == '	thunderstorm with light drizzle' || data.weather[0].description == '	thunderstorm with drizzle' || data.weather[0].description == '	thunderstorm with heavy drizzle') {
-            document.getElementById('icon').setAttribute('src', '../images/Thunderstorm/thunderstorm.png');
+            document.getElementById('icon').setAttribute('src', './images/Thunderstorm/thunderstorm.png');
         }
     
         // drizzle
     
         else if (data.weather[0].description == 'light intensity drizzle' || data.weather[0].description == 'drizzle' || data.weather[0].description == 'heavy intensity drizzle' || data.weather[0].description == 'light intensity drizzle rain' || data.weather[0].description == 'dizzle rain' || data.weather[0].description == 'heavy intensity drizzle rain' || data.weather[0].description == 'shower rain and drizzle' || data.weather[0].description == 'heavy shower rain and drizzle' || data.weather[0].description == 'shower drizzle') {
-            document.getElementById('icon').setAttribute('src', '../images/Drizzle/drizzle.png');
+            document.getElementById('icon').setAttribute('src', './images/Drizzle/drizzle.png');
         }
     
         // rain 
     
         else if(data.weather[0].description == 'light rain' || data.weather[0].description == 'moderate rain' || data.weather[0].description == 'heavy intensity rain' || data.weather[0].description == 'very heavy rain' || data.weather[0].description == 'extreme rain') {
-            document.getElementById('icon').setAttribute('src', '../images/Rain/rain.png');
+            document.getElementById('icon').setAttribute('src', './images/Rain/rain.png');
         }
     
         else if (data.weather[0].description == 'light intensity shower rain' || data.weather[0].description == 'shower rain' || data.weather[0].description == 'heavy intensity shower rain' || data.weather[0].description == 'ragged shower rain') {
-            document.getElementById('icon').setAttribute('src', '../images/Rain/heavyRain.png');
+            document.getElementById('icon').setAttribute('src', './images/Rain/heavyRain.png');
         }
     
         else if(data.weather[0].description == 'freezing rain') {
-            document.getElementById('icon').setAttribute('src', '../images/Rain/freezingRain.png');
+            document.getElementById('icon').setAttribute('src', './images/Rain/freezingRain.png');
         }
     
         // snow
     
         else if (data.weather[0].description == 'light snow' || data.weather[0].description == 'snow' || data.weather[0].description == 'heavy snow' || data.weather[0].description == 'sleet' || data.weather[0].description == 'light shower sleet' || data.weather[0].description == 'shower sleet' || data.weather[0].description == 'light rain and snow' || data.weather[0].description == 'rain and snow' || data.weather[0].description == 'light shower snow' || data.weather[0].description == 'shower snow' || data.weather[0].description == 'heavy shower snow') {
-            document.getElementById('icon').setAttribute('src', '../images/Snow/snow.png');
+            document.getElementById('icon').setAttribute('src', './images/Snow/snow.png');
         }
         else {
-            document.getElementById('icon').setAttribute('src', '../images/Atmosphere/mist.png');
+            document.getElementById('icon').setAttribute('src', './images/Atmosphere/mist.png');
     
         }        
 }
