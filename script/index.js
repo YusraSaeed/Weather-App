@@ -36,9 +36,9 @@ function getWeather(city) {
     description.innerHTML = ` `;
     wind.innerHTML = ` `;
     humidity.innerHTML = ` `;
-    windImg.setAttribute('src', '');
+    // windImg.setAttribute('src', '');
     // humidityImg.setAttribute('src', '');
-    // weatherIcon.setAttribute('src', '');
+    weatherIcon.setAttribute('src', '');
 
     loadingSpinner.style.display = 'block';
     detailsContainer.style.display = 'none';
@@ -98,7 +98,7 @@ function fiveDayForecast(city) {
 
     } else {
         const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&exclude=current,minutely,hourly,alerts&appid=${apiKey}&units=metric`;
-        table.innerHTML = ``; // Clear previous entries if any
+        table.innerHTML = ``; 
         loadingSpinnerTwo.style.display = 'block';
 
         fetch(url)
@@ -109,14 +109,14 @@ function fiveDayForecast(city) {
         .then((data) => {
             document.getElementById('insertCityName').innerHTML = `${city} `;
             const dailyData = data.list.filter(entry => entry.dt_txt.includes("12:00:00"));
-            table.innerHTML = ''; // Clear existing rows
+            table.innerHTML = ''; 
             
             // Create Intersection Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Stop observing once it's visible
+                        observer.unobserve(entry.target); 
                     }
                 });
             }, {
@@ -248,24 +248,6 @@ function getFiveDayForecastForCurrentLocation(latitude, longitude) {
         });
 }
 
-
-function getCurrentLocationWeatherAndForecast() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-            const { latitude, longitude } = position.coords;
-
-            // Fetch current weather
-            getCurrentLocationWeather();
-
-            // Fetch 5-day forecast for the current location
-            // getFiveDayForecastForCurrentLocation(latitude, longitude);
-        });
-    } else {
-        alert('Geolocation is not supported by your browser.');
-    }
-}
-
-
 // Dark Mode Functionality
 const modeToggleBtn = document.getElementById('changeMode');
 modeToggleBtn.addEventListener('click', function () {
@@ -291,7 +273,7 @@ searchBtn.addEventListener('click', (e) => {
 })
 
 
-window.onload = getCurrentLocationWeatherAndForecast;
+window.onload = getCurrentLocationWeather;
 
 
 
