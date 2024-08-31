@@ -177,8 +177,8 @@ function getCurrentLocationWeather() {
                     document.getElementById('description').innerHTML = data.weather[0].description;
                     document.getElementById('wind').innerHTML = `${data.wind.speed} m/s`;
                     document.getElementById('humidity').innerHTML = `${data.main.humidity}%`;
-                    document.getElementById('windImg').setAttribute('src', '../images/wind.png');
-                    document.getElementById('humidityImg').setAttribute('src', '../images/humidity.png');
+                    // document.getElementById('windImg').setAttribute('src', '../images/wind.png');
+                    // document.getElementById('humidityImg').setAttribute('src', '../images/humidity.png');
                     setIcon(data);
 
                     detailsContainer.style.display = 'flex';
