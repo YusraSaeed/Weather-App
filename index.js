@@ -193,7 +193,7 @@ function getCurrentLocationWeather() {
 
 function getFiveDayForecastForCurrentLocation(latitude, longitude) {
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-    const loadingSpinner = document.getElementById('loadingSpinner'); // Ensure you have this spinner element
+    const loadingSpinner = document.getElementById('loadingSpinner'); 
     loadingSpinner.style.display = 'block';
 
     fetch(url)
@@ -204,14 +204,14 @@ function getFiveDayForecastForCurrentLocation(latitude, longitude) {
         .then((data) => {
             const dailyData = data.list.filter(entry => entry.dt_txt.includes("12:00:00"));
             const table = document.getElementById('displayForecast');
-            table.innerHTML = ''; // Clear previous entries if any
+            table.innerHTML = ''; 
 
             // Create Intersection Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Stop observing once it's visible
+                        observer.unobserve(entry.target); 
                     }
                 });
             }, {
@@ -236,7 +236,6 @@ function getFiveDayForecastForCurrentLocation(latitude, longitude) {
                 `;
                 table.appendChild(row);
 
-                // Observe the row element
                 observer.observe(row);
             });
         })
