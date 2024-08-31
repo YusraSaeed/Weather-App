@@ -88,7 +88,7 @@ function getWeather(city) {
 
 function fiveDayForecast(city) {
     const table = document.getElementById('displayForecast');
-    const loadingSpinnerTwo = document.getElementById('loadingSpinnerTwo');
+    // const loadingSpinnerTwo = document.getElementById('loadingSpinnerTwo');
 
     if (city === 'key') {
         table.innerHTML = ``;
@@ -154,16 +154,20 @@ function fiveDayForecast(city) {
 
 // Initial Weather Functionality
 function getCurrentLocationWeather() {
+    loadingSpinner.style.display = 'block';
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
             const { latitude, longitude } = position.coords;
             const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
 
-            loadingSpinner.style.display = 'block';
             detailsContainer.style.display = 'none';
 
             fetch(url)
-                .then((response) => response.json())
+                .then((response) => {
+                    loadingSpinner.style.display = 'none';
+                    return response.json()
+                })
                 .then((data) => {
                     console.log(data);
                     
@@ -177,8 +181,8 @@ function getCurrentLocationWeather() {
                     document.getElementById('humidityImg').setAttribute('src', '../images/humidity.png');
                     setIcon(data);
 
-                    loadingSpinner.style.display = 'none';
                     detailsContainer.style.display = 'flex';
+                    getFiveDayForecastForCurrentLocation(latitude, longitude);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -193,12 +197,12 @@ function getCurrentLocationWeather() {
 
 function getFiveDayForecastForCurrentLocation(latitude, longitude) {
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-    const loadingSpinner = document.getElementById('loadingSpinner'); 
-    loadingSpinner.style.display = 'block';
+    // const loadingSpinner = document.getElementById('loadingSpinner'); 
+    loadingSpinnerTwo.style.display = 'block';
 
     fetch(url)
         .then((response) => {
-            loadingSpinner.style.display = 'none';
+            loadingSpinnerTwo.style.display = 'none';
             return response.json();
         })
         .then((data) => {
@@ -254,7 +258,7 @@ function getCurrentLocationWeatherAndForecast() {
             getCurrentLocationWeather();
 
             // Fetch 5-day forecast for the current location
-            getFiveDayForecastForCurrentLocation(latitude, longitude);
+            // getFiveDayForecastForCurrentLocation(latitude, longitude);
         });
     } else {
         alert('Geolocation is not supported by your browser.');
