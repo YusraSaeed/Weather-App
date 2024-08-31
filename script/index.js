@@ -37,8 +37,8 @@ function getWeather(city) {
     wind.innerHTML = ` `;
     humidity.innerHTML = ` `;
     windImg.setAttribute('src', '');
-    humidityImg.setAttribute('src', '');
-    weatherIcon.setAttribute('src', '');
+    // humidityImg.setAttribute('src', '');
+    // weatherIcon.setAttribute('src', '');
 
     loadingSpinner.style.display = 'block';
     detailsContainer.style.display = 'none';
